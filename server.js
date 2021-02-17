@@ -38,7 +38,7 @@ app.get("/articles/:type", (req, res) => {
         () => {
           res.json(articles);
         },
-        req.params.type != "latest-edition" ? 1500 : 2250
+        req.params.type == "latest-edition" ? 1500 : 2250
       );
     }
   });
