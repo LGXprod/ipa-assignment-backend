@@ -1,8 +1,10 @@
 const { query } = require("express");
 const express = require("express");
 const mysql = require("mysql");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 
 app.listen(5000, () => console.log("Server running on port 5000"));
 
@@ -23,6 +25,7 @@ connection.connect(function (err) {
 });
 
 app.get("/articles/:type", (req, res) => {
+  console.log(req.params.type);
   const queryString = `select * from article where id ${
     req.params.type === "latest-edition" ? "<= 4" : ">= 5"
   };`;
